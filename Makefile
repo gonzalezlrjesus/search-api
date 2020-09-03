@@ -9,9 +9,7 @@ test:
 	go test ./...
 execute: build
 	$(shell cd bin && ./main)
-
-# TODO
-# docker-build:
-#            docker run -it -v $PWD:/search-api golang:1.14.7-alpine3.12
-
-# go modules clean tiny
+image:
+	docker build --tag search-api .
+container:
+	docker run -it -p 8000:8000 --name api-test search-api

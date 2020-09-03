@@ -3,6 +3,37 @@ Evaluacion de competencias tecnicas - API test
 
 La API tiene el proposito de centralizar multiples busquedas de diferentes fuentes.
 
+### Configuracion Normal
+
+Si desea trabajar con el proyecto normalmente debe instalar Go(Golang) segun el sistema operativo que usted utilice y Git.
+
+Luego ya instalado las dos herramientas se dirige a una carpeta y clone el repositorio:
+
+    git clone https://github.com/gonzalezlrjesus/search-api.git
+
+luego de clonado:
+
+    cd search-api && go run main.go
+
+con los comandos de arriba ya deberia estar ejecutandose la API
+
+### Configuracion Rapida utilizando Docker
+
+Si desea puede utilizar un entorno de desarrollo a traves de docker, para ello debe instalar Docker primero y luego Git.
+
+ahora debera clonar el repositorio
+    
+    git clone https://github.com/gonzalezlrjesus/search-api.git
+    cd search-api
+
+el siguiente comando creara una imagen del repositorio
+
+    docker build --tag search-api .
+
+luego crea un container para finalmente comenzar a hacer pruebas localmente.
+    
+    docker run -it -p 8000:8000 --name api-test search-api
+
 ### Alojamiento de la API
 
 la API se encuentra alojada en una app de HEROKU: https://search-api-tribal.herokuapp.com/
@@ -13,13 +44,21 @@ la API se encuentra alojada en una app de HEROKU: https://search-api-tribal.hero
 
     /v1/search?query={criterio}
 
+#### Header
+
+    Content-Type = application/json
+    
 #### Parametro
 
     query = indica el criterio de la busqueda a realizar.
 
-#### Ejemplo de Request
+#### Ejemplo de Request: Curl
 
-    curl -i http://localhost:8000/v1/search?query=Newton
+    curl -i http://localhost:8000/v1/search?query=Newton --header 'Content-Type: application/json'
+
+#### Ejemplo de Request: Navegador
+
+http://localhost:8000/v1/search?query=Newton
 
 #### Ejemplo de Response
 
@@ -191,3 +230,33 @@ la API se encuentra alojada en una app de HEROKU: https://search-api-tribal.hero
     "status": 200
     }
 
+##### Estructura del proyecto
+
+    .
+    ├── bin
+    │   └── main
+    ├── config
+    │   └── config.go
+    ├── controllers
+    │   └── search-controller.go
+    ├── go.mod
+    ├── go.sum
+    ├── LICENSE
+    ├── main.go
+    ├── Makefile
+    ├── models
+    │   ├── APIApple.go
+    │   ├── APICrcind.go
+    │   ├── APITvMaze.go
+    │   └── response.go
+    ├── README.md
+    ├── routes
+    │   └── routes.go
+    ├── services
+    │   ├── crcind.go
+    │   ├── itunes-apple.go
+    │   └── tvmaze.go
+    └── utils
+        └── utils.go
+
+    7 directorios, 18 archivos
