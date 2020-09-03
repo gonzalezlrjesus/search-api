@@ -22,6 +22,11 @@ var SearchController = func(w http.ResponseWriter, r *http.Request) {
 
 	responseList = append(responseList, utils.TvMazeStructToResponseStruct(services.SearchTvMaze(urlValues.Get("query")))...)
 
+	responseList = append(responseList, utils.CrcindStructToResponseStruct(services.SearchCrcind(urlValues.Get("query")))...)
+
+	// Sort by name.
+	responseList = utils.QuickSortToSortbyName(responseList)
+
 	response :=
 		map[string]interface{}{
 			"query": responseList,

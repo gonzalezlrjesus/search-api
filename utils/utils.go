@@ -75,3 +75,47 @@ func TvMazeStructToResponseStruct(showsList models.TvMazeAPI) []models.APIRespon
 
 	return responseList
 }
+
+// CrcindStructToResponseStruct .
+func CrcindStructToResponseStruct(personList models.CrcindAPI) []models.APIResponse {
+	var responseList []models.APIResponse
+
+	for _, b := range personList.Body.GetListByNameResponse.GetListByNameResult.PersonIdentification {
+		newAPIResponse := models.APIResponse{Name: b.Name, Kind: "person", Date: b.DOB, Originapi: "CRCIND"} // pulled out for clarity
+		responseList = append(responseList, newAPIResponse)
+	}
+
+	return responseList
+}
+
+// QuickSortToSortbyName .
+func QuickSortToSortbyName(responseList []models.APIResponse) []models.APIResponse {
+
+	if len(responseList) > 1 {
+		pivotIndex := len(responseList) / 2
+		var smallerItems = []models.APIResponse{}
+		var largerItems = []models.APIResponse{}
+
+		for i := range responseList {
+			val := responseList[i].Name
+			if i != pivotIndex {
+				if val < responseList[pivotIndex].Name {
+					smallerItems = append(smallerItems, responseList[i])
+				} else {
+					largerItems = append(largerItems, responseList[i])
+				}
+			}
+		}
+
+		QuickSortToSortbyName(smallerItems)
+		QuickSortToSortbyName(largerItems)
+
+		var merged []models.APIResponse = append(append(append([]models.APIResponse{}, smallerItems...), []models.APIResponse{responseList[pivotIndex]}...), largerItems...)
+
+		for j := 0; j < len(responseList); j++ {
+			responseList[j] = merged[j]
+		}
+
+	}
+	return responseList
+}
