@@ -3,11 +3,13 @@ Evaluacion de competencias tecnicas - API test
 
 La API tiene el proposito de centralizar multiples busquedas de diferentes fuentes.
 
-### Configuracion Normal
+![Heroku](https://heroku-badge.herokuapp.com/?app=search-api-tribal.herokuapp.com/v1/search?query=Newton)
 
-Si desea trabajar con el proyecto normalmente debe instalar Go(Golang) segun el sistema operativo que usted utilice y Git.
+### Configuracion
 
-Luego ya instalado las dos herramientas se dirige a una carpeta y clone el repositorio:
+Si desea trabajar con el proyecto debera instalar Go(Golang) en su equipo segun el sistema operativo que  utilice y Git.
+
+Ya instalado las dos herramientas se puede dirigir a una carpeta y clonar el repositorio:
 
     git clone https://github.com/gonzalezlrjesus/search-api.git
 
@@ -15,22 +17,22 @@ luego de clonado:
 
     cd search-api && go run main.go
 
-con los comandos de arriba ya deberia estar ejecutandose la API
+con los comandos de arriba ya deberia estar ejecutandose la API.
 
-### Configuracion Rapida utilizando Docker
+### Configuracion con Docker
 
-Si desea puede utilizar un entorno de desarrollo a traves de docker, para ello debe instalar Docker primero y luego Git.
+Si desea puede utilizar un entorno utilizando docker, para ello debe instalar Docker primero y Git.
 
-ahora debera clonar el repositorio
+Ya instalados puede clonar el repositorio:
     
     git clone https://github.com/gonzalezlrjesus/search-api.git
     cd search-api
 
-el siguiente comando creara una imagen del repositorio
+Con el siguiente comando se creara una imagen del repositorio:
 
     docker build --tag search-api .
 
-luego crea un container para finalmente comenzar a hacer pruebas localmente.
+luego se crea un container para finalmente comenzar a hacer pruebas localmente.
     
     docker run -it -p 8000:8000 --name api-test search-api
 
@@ -54,11 +56,11 @@ la API se encuentra alojada en una app de HEROKU: https://search-api-tribal.hero
 
 #### Ejemplo de Request: Curl
 
-    curl -i http://localhost:8000/v1/search?query=Newton --header 'Content-Type: application/json'
+    curl -i https://search-api-tribal.herokuapp.com/v1/search?query=Newton --header 'Content-Type: application/json'
 
 #### Ejemplo de Request: Navegador
 
-http://localhost:8000/v1/search?query=Newton
+https://search-api-tribal.herokuapp.com/v1/search?query=Newton
 
 #### Ejemplo de Response
 
@@ -259,4 +261,4 @@ http://localhost:8000/v1/search?query=Newton
     └── utils
         └── utils.go
 
-    7 directories, 19 files
+    7 directorios, 19 archivos
