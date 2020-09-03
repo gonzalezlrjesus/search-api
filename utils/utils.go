@@ -2,7 +2,10 @@ package utils
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+
+	"github.com/gonzalezlrjesus/search-api/models"
 )
 
 // Respond function to responde request
@@ -48,4 +51,16 @@ func Respond(w http.ResponseWriter, data map[string]interface{}, status uint) {
 
 	data["status"] = status
 	json.NewEncoder(w).Encode(data)
+}
+
+// AppleStructToResponseStruct .
+func AppleStructToResponseStruct(appleList models.AppleAPI) []models.APIResponse {
+	var responseList []models.APIResponse
+
+	for _, b := range appleList.Results {
+		newAPIResponse := models.APIResponse{Name: b.TrackName, Kind: b.Kind, Date: b.ReleaseDate, Originapi: "APPLE"} // pulled out for clarity
+		responseList = append(responseList, newAPIResponse)
+	}
+	log.Println(responseList)
+	return responseList
 }
