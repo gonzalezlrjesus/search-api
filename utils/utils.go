@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/gonzalezlrjesus/search-api/models"
@@ -61,6 +60,18 @@ func AppleStructToResponseStruct(appleList models.AppleAPI) []models.APIResponse
 		newAPIResponse := models.APIResponse{Name: b.TrackName, Kind: b.Kind, Date: b.ReleaseDate, Originapi: "APPLE"} // pulled out for clarity
 		responseList = append(responseList, newAPIResponse)
 	}
-	log.Println(responseList)
+	// log.Println(responseList)
+	return responseList
+}
+
+// TvMazeStructToResponseStruct .
+func TvMazeStructToResponseStruct(showsList models.TvMazeAPI) []models.APIResponse {
+	var responseList []models.APIResponse
+
+	for _, b := range showsList {
+		newAPIResponse := models.APIResponse{Name: b.Show.Name, Kind: "show", Date: b.Show.Premiered, Originapi: "TVMAZE"} // pulled out for clarity
+		responseList = append(responseList, newAPIResponse)
+	}
+
 	return responseList
 }

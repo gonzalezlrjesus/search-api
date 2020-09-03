@@ -20,6 +20,8 @@ var SearchController = func(w http.ResponseWriter, r *http.Request) {
 	responseList = append(responseList, utils.AppleStructToResponseStruct(services.SearchApple(urlValues.Get("query"), "movie"))...)
 	responseList = append(responseList, utils.AppleStructToResponseStruct(services.SearchApple(urlValues.Get("query"), "ebook"))...)
 
+	responseList = append(responseList, utils.TvMazeStructToResponseStruct(services.SearchTvMaze(urlValues.Get("query")))...)
+
 	response :=
 		map[string]interface{}{
 			"query": responseList,
