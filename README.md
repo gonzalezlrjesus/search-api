@@ -5,6 +5,16 @@ La API tiene el proposito de centralizar multiples busquedas de diferentes fuent
 
 ![Heroku](https://heroku-badge.herokuapp.com/?app=search-api-tribal.herokuapp.com/v1/search?query=Newton)
 
+### Dependencias y herramientas utilizadas para el desarrollo.
+
+    go version go1.14.7 linux/amd64
+    github.com/gorilla/mux v1.8.0 
+    github.com/rs/cors v1.7.0
+    heroku/7.42.13 linux-x64 node-v12.16.2
+
+    Para pruebas:
+    Postman v7.31.1 i
+
 ### Configuracion
 
 Si desea trabajar con el proyecto debera instalar Go(Golang) en su equipo segun el sistema operativo que  utilice y Git.
@@ -15,7 +25,7 @@ Ya instalado las dos herramientas se puede dirigir a una carpeta y clonar el rep
 
 luego de clonado:
 
-    cd search-api && go run main.go
+    cd search-api && go build -o bin/main main.go && cd bin && ./main
 
 con los comandos de arriba ya deberia estar ejecutandose la API.
 
