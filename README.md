@@ -231,7 +231,6 @@ http://localhost:8000/v1/search?query=Newton
     }
 
 ##### Estructura del proyecto
-
     .
     ├── bin
     │   └── main
@@ -239,6 +238,7 @@ http://localhost:8000/v1/search?query=Newton
     │   └── config.go
     ├── controllers
     │   └── search-controller.go
+    ├── Dockerfile
     ├── go.mod
     ├── go.sum
     ├── LICENSE
@@ -259,4 +259,4 @@ http://localhost:8000/v1/search?query=Newton
     └── utils
         └── utils.go
 
-    7 directorios, 18 archivos
+    7 directories, 19 files
