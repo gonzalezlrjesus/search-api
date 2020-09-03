@@ -14,7 +14,7 @@ var SearchController = func(w http.ResponseWriter, r *http.Request) {
 
 	parsedURL, _ := url.Parse(r.URL.String())
 	urlValues := parsedURL.Query()
-	var responseList []models.APIResponse
+	responseList := []models.APIResponse{}
 
 	responseList = append(responseList, utils.AppleStructToResponseStruct(services.SearchApple(urlValues.Get("query"), "song"))...)
 	responseList = append(responseList, utils.AppleStructToResponseStruct(services.SearchApple(urlValues.Get("query"), "movie"))...)
